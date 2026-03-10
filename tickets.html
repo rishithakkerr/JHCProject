@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy Tickets</title>
+<link rel="stylesheet" href="tickets.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="events.html" class="logo">Sector</a>
+
+        <button class="profile">
+            <img src="images/profile.png" class="nav-icon">
+        </button>
+    </nav>
+
+    <div class="ticket-wrapper">
+        <section class="ticket-box">
+            <h2 id="eventName">Event</h2>
+            <p>Select Ticket Type</p>
+            <select id="ticketType"></select>
+            <div class="quantity">
+                <button onclick="decrease()">-</button>
+                <span id="qty">1</span>
+                <button onclick="increase()">+</button>
+            </div>
+            <h3>Total ₹<span id="total">1500</span></h3>
+            <button class="buy-btn">Proceed to Payment</button>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

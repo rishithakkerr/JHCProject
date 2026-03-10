@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sector</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <h1 class="logo">Sector</h1>
+            <div class="location">
+                <img src="images/location.png" class="pin">
+                <div class="location-text">
+                    <strong>Kharghar</strong>
+                    <p>Navi Mumbai</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button class="profile">
+            <img src="images/profile.png" class="nav-icon">
+            </button>
+        </div>
+    </nav>
+
+    <!-- SLIDER -->
+
+    <section class="slider">
+        <div class="slide active">
+        <img src="images/weekendlong.png">
+        <div class="slide-text">
+        <h2>The Weeknd Live</h2>
+        <p>Mumbai Stadium • Aug 21</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/rolling loud long.png">
+        <div class="slide-text">
+        <h2>Rolling Loud India</h2>
+        <p>Delhi • Sep 10</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/biswa.jpg">
+        <div class="slide-text">
+        <h2>Inventions by Biswa Kalyan Rath</h2>
+        <p>Mumbai • June 14</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/aakash.jpg">
+        <div class="slide-text">
+        <h2>Daily Ka Kaam Hai By Aakash Gupta</h2>
+        <p>Mumbai • March 13</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/keinemusik.jpg">
+        <div class="slide-text">
+        <h2>Keinemusik</h2>
+        <p>Mumbai • June 12</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/ipl.jpg">
+        <div class="slide-text">
+        <h2>MI vs CSK</h2>
+        <p>Mumbai • May 18</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/anyma.jpg">
+        <div class="slide-text">
+        <h2>ANYMA presents AEDEN</h2>
+        <p>Mumbai • Nov 21</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/dua.jpg">
+        <div class="slide-text">
+        <h2>Dua Lipa Live</h2>
+        <p>Mumbai • Oct 12</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/citymadrid.jpg">
+        <div class="slide-text">
+        <h2>Man City vs Real Madrid</h2>
+        <p>Etihad Stadium • Apr 9</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/elclasico.jpg">
+        <div class="slide-text">
+        <h2>Barcelona vs Real Madrid</h2>
+        <p>Camp Nou • Oct 26</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/uclfinal.jpg">
+        <div class="slide-text">
+        <h2>UEFA Champions League Final</h2>
+        <p>Wembley Stadium • May 31</p>
+        </div>
+        </div>
+
+        <div class="slide">
+        <img src="images/ye.jpg">
+        <div class="slide-text">
+        <h2>Ye Live</h2>
+        <p>Delhi • Nov 5</p>
+        </div>
+        </div>
+
+
+        <div class="slide">
+        <img src="images/zomaland.jpg">
+        <div class="slide-text">
+        <h2>Zomaland Food Festival</h2>
+        <p>Delhi • Feb 2</p>
+        </div>
+        </div>
+
+        <button class="prev">❮</button>
+        <button class="next">❯</button>
+    </section>
+
+    <!-- CATEGORIES -->
+
+    <section class="categories">
+        <h2>Explore Events</h2>
+        <div class="category-grid">
+            <div class="category-card" data-category="all">
+            <img src="images/all.png" class="category-img">
+            <p>All</p>
+            </div>
+
+            <div class="category-card" data-category="music">
+            <img src="images/music.png" class="category-img">
+            <p>Music</p>
+            </div>
+
+            <div class="category-card" data-category="nightlife">
+            <img src="images/nightlife.png" class="category-img">
+            <p>Nightlife</p>
+            </div>
+
+            <div class="category-card" data-category="comedy">
+            <img src="images/comedy.png" class="category-img">
+            <p>Comedy</p>
+            </div>
+
+            <div class="category-card" data-category="sports">
+            <img src="images/sports.png" class="category-img">
+            <p>Sports</p>
+            </div>
+
+            <div class="category-card" data-category="festival">
+            <img src="images/festival.png" class="category-img">
+            <p>Festivals</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+
+    <section class="events">
+        <h2>All Events</h2>
+        <div class="events-grid" id="eventsContainer"></div>
+    </section>
+
+    <script src="script.js"></script>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h2 class="footer-logo">Sector</h2>
+                <p>Discover concerts, comedy shows, sports and nightlife around you.</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="#">Music</a>
+                <a href="#">Nightlife</a>
+                <a href="#">Comedy</a>
+                <a href="#">Sports</a>
+                <a href="#">Festivals</a>
+                </div>
+
+                <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+        <p>© 2026 Sector. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
