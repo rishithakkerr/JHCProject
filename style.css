@@ -172,6 +172,24 @@ font-size:15px;
 opacity:0.9;
 }
 
+.slide-btn{
+display:inline-block;
+margin-top:10px;
+padding:8px 14px;
+background:#6a00ff;
+color:white;
+text-decoration:none;
+font-size:14px;
+font-weight:500;
+border-radius:6px;
+transition:0.2s;
+}
+
+.slide-btn:hover{
+background:#5200cc;
+transform:translateY(-2px);
+}
+
 .prev,.next{
 position:absolute;
 top:50%;
