@@ -1,43 +1,32 @@
-// GLOBALS
-
 let quantity = 1
 
-
-// SLIDER
-
+// Slider
 let slides = document.querySelectorAll(".slide")
 let index = 0
 
 document.querySelector(".next")?.addEventListener("click",()=>{
 
-slides[index].classList.remove("active")
-slides[index].classList.add("exit")
+    slides[index].classList.remove("active")
+    slides[index].classList.add("exit")
+    index = (index + 1) % slides.length
+    slides[index].classList.add("active")
 
-index = (index + 1) % slides.length
-
-slides[index].classList.add("active")
-
-setTimeout(()=>{
-slides.forEach(s=>s.classList.remove("exit"))
-},600)
-
+    setTimeout(()=>{
+        slides.forEach(s=>s.classList.remove("exit"))
+    },600)
 })
 
 document.querySelector(".prev")?.addEventListener("click",()=>{
 
-slides[index].classList.remove("active")
-slides[index].classList.add("exit")
+    slides[index].classList.remove("active")
+    slides[index].classList.add("exit")
+    index = (index - 1 + slides.length) % slides.length
+    slides[index].classList.add("active")
 
-index = (index - 1 + slides.length) % slides.length
-
-slides[index].classList.add("active")
-
-setTimeout(()=>{
-slides.forEach(s=>s.classList.remove("exit"))
-},600)
-
+    setTimeout(()=>{
+    slides.forEach(s=>s.classList.remove("exit"))
+    },600)
 })
-
 
 // EVENTS DATA
 
@@ -238,157 +227,119 @@ tickets:{ general:1800, premium:3000, vip:4500 }
 ]
 
 
-// TICKETS PAGE LOGIC
+// Tickets Page
 
 const params = new URLSearchParams(window.location.search)
 const eventId = params.get("id")
-
-if(eventId){
-
 const event = events.find(e => e.id === eventId)
 
 if(event){
+    document.getElementById("eventName").innerText = event.name
+    const select = document.getElementById("ticketType")
+    select.innerHTML = ""
+    for(const type in event.tickets)
+    {
+        const price = event.tickets[type]
 
-const nameEl = document.getElementById("eventName")
-if(nameEl) nameEl.innerText = event.name
+        select.innerHTML += `
+        <option value="${price}">
+        ${type.toUpperCase()} ₹${price}
+        </option>
+        `
+    }
 
-const select = document.getElementById("ticketType")
-
-if(select){
-
-select.innerHTML=""
-
-for(const type in event.tickets){
-
-let price = event.tickets[type]
-
-select.innerHTML += `
-<option value="${price}">
-${type.toUpperCase()} ₹${price}
-</option>
-`
-
+    select.addEventListener("change", updatePrice)
+    document.getElementById("qty").innerText = quantity
+    updatePrice()
 }
 
-select.addEventListener("change", updatePrice)
-
-document.getElementById("qty").innerText = quantity
-
-updatePrice()
-
-}
-
-}
-
-}
-
-
-// EVENTS PAGE
+// Events Page
 
 const container = document.getElementById("eventsContainer")
 
 if(container){
-
 function displayEvents(list){
+    container.innerHTML=""
+    list.forEach(e=>{
 
-container.innerHTML=""
+        container.innerHTML += `
 
-list.forEach(e=>{
+        <div class="event-card">
+        <img src="${e.img}">
+        <div class="event-info">
+        <h3>${e.name}</h3>
+        <p>${e.venue}</p>
+        <p>${e.date}</p>
+        <p>₹${e.price}</p>
+        <a href="tickets.html?id=${e.id}">Book Ticket</a>
+        </div>
+        </div>
+        `
 
-container.innerHTML += `
-<div class="event-card">
-
-<img src="${e.img}">
-
-<div class="event-info">
-
-<h3>${e.name}</h3>
-<p>${e.venue}</p>
-<p>${e.date}</p>
-<p>₹${e.price}</p>
-
-<a href="tickets.html?id=${e.id}">Book Ticket</a>
-
-</div>
-</div>
-`
-
-})
-
+    })
 }
-
 displayEvents(events)
+} 
 
-}
-
-
-// CATEGORY FILTER
+// Category Filter
 
 document.querySelectorAll(".category-card").forEach(card=>{
+    card.addEventListener("click",()=>{
 
-card.addEventListener("click",()=>{
+        document.querySelectorAll(".category-card").forEach(c=>c.classList.remove("active"))
+        card.classList.add("active")
 
-document.querySelectorAll(".category-card").forEach(c=>c.classList.remove("active"))
-card.classList.add("active")
+        let category = card.dataset.category
 
-let category = card.dataset.category
-
-if(category==="all"){
-displayEvents(events)
-}else{
-displayEvents(events.filter(e=>e.category===category))
-}
-
+        if(category==="all")
+        {
+        displayEvents(events)
+        }
+        else
+        {
+        displayEvents(events.filter(e=>e.category===category))
+        }
+    })
 })
 
-})
-
-
-// AUTO SLIDER
+// Mobile Auto Slider
 
 function nextSlide(){
+    slides[index].classList.remove("active")
+    slides[index].classList.add("exit")
+    index=(index+1)%slides.length
+    slides[index].classList.add("active")
 
-slides[index].classList.remove("active")
-slides[index].classList.add("exit")
-
-index=(index+1)%slides.length
-
-slides[index].classList.add("active")
-
-setTimeout(()=>{
-slides.forEach(s=>s.classList.remove("exit"))
-},600)
-
+    setTimeout(()=>{
+    slides.forEach(s=>s.classList.remove("exit"))
+    },600)
 }
 
-if(window.innerWidth<=768){
-setInterval(nextSlide,4000)
+if(window.innerWidth<=768)
+{
+    setInterval(nextSlide,4000)
 }
 
-
-// PRICE CALCULATION
-
+// Price Calculations & Quantity
 function updatePrice(){
+    let price = Number(document.getElementById("ticketType")?.value)
 
-let price = Number(document.getElementById("ticketType")?.value)
-
-if(!isNaN(price)){
-document.getElementById("total").innerText = price * quantity
-document.getElementById("qty").innerText = quantity
-}
-
+    if(!isNaN(price))
+    {
+        document.getElementById("total").innerText = price * quantity
+        document.getElementById("qty").innerText = quantity
+    }
 }
 
 function increase(){
-quantity++
-updatePrice()
+    quantity++
+    updatePrice()
 }
 
 function decrease(){
-
-if(quantity>1){
-quantity--
-updatePrice()
-}
-
+    if(quantity>1)
+    {
+        quantity--
+        updatePrice()
+    }
 }
